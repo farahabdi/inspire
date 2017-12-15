@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import Items from './Items'
 import Board from './Board'
 import { validMoves, generateRandom, shuffle, checkGameStatus } from './utils'
@@ -20,27 +18,24 @@ export class App extends Component {
       handleItemClick = (e) => {
         const { items, emptyIndex, validPositions } = this.state
         let number = parseInt(e.target.id)
-
         // Find the actual key in the dom array as they may not be in order
         number= _.findIndex(items, item => item.key == number);
-
         // If item clicked is not a valid move just return
         if (validPositions.indexOf(number) === -1) {
             return
         }
-
         // The item clicked will be the new emptyItem, and generate validPositions from that
         const newEmptyIndex = number
         const newValidPositions = validMoves(newEmptyIndex)
-
         const newItems = this.rearrangeBoard(items, number, emptyIndex)
+        const complete = checkGameStatus(newItems)
 
         this.setState({
             emptyIndex: newEmptyIndex,
             validPositions: newValidPositions,
-            items: newItems
+            items: newItems,
+            boardComplete: complete
         })
-        
       }
 
       rearrangeBoard = (items, number, emptyIndex) => {
@@ -65,36 +60,26 @@ export class App extends Component {
     
       componentWillMount = () => {
         const items = this.generateItems()
-        const validPositions = validMoves(15)
-
-        this.setState({ items, validPositions })
-      }
-
-      checkBoard = () => {
-          this.setState({
-            boardComplete: checkGameStatus(this.state.items)
-          })
+        const validPositions = validMoves(this.state.emptyIndex)
+        const complete = checkGameStatus(items)
+        this.setState({ items, validPositions, boardComplete: complete })
       }
 
       shuffleBoard = () => {
         const { items, emptyIndex } = this.state
-
         const newItems = shuffle(items)
-        const newEmptyIndex = generateRandom()
+        let newEmptyIndex = generateRandom()
+        newEmptyIndex = _.findIndex(newItems, item => item.key == 15);
         const newvalidPositions = validMoves(newEmptyIndex)
-
 
         this.setState({
             items: newItems,
             emptyIndex: newEmptyIndex,
             validPositions: newvalidPositions
         })
-
-        
       }
       
     render() {
-
         const { items, emptyIndex, validPositions, boardComplete } = this.state
       
         return (
@@ -112,12 +97,4 @@ export class App extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-  
-})
-
-const mapDispatchToProps = {
-  
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

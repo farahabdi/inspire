@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import Items from './Items'
+
 export class Board extends Component {
-
-
-
 
   render() {
 
@@ -32,12 +28,4 @@ export class Board extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  
-})
-
-const mapDispatchToProps = {
-  
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Board)
+export default Board

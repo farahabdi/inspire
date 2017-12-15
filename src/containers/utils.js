@@ -5,7 +5,6 @@ const shuffle = list => {
     return list.map((a) => [Math.random(),a]).sort((a,b) => a[0]-b[0]).map((a) => a[1]);
 }
 
-// 
 const generateRandom = () => {
     return Math.floor(Math.random() * 16); 
   }
@@ -29,7 +28,6 @@ var rules = [
 ]
 
 const validMoves = (emptyIndex) => rules[emptyIndex.toString()][emptyIndex.toString()]
-
 
 export {
     validMoves,

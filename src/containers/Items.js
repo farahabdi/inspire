@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-
 export class Item extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          
-        };
-      }
-
   render() {
-
     const { number, isEmpty, isValid, onSelect} = this.props
 
     const classes = classnames(
@@ -31,5 +22,4 @@ export class Item extends Component {
     )
   }
 }
-
 export default Item
