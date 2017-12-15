@@ -48,7 +48,7 @@ export class App extends Component {
       generateItems = () => {
         const numbers = Array.from({length: 16}, (v, i) => i)
         const listItems = numbers.map(number =>
-            <Items
+            <Item
                 key={number.toString()}
                 number={number}
                 onSelect={this.handleItemClick}
