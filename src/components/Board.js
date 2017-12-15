@@ -19,9 +19,7 @@ export class Board extends Component {
     return (
         <div className="board">
             { items }
-            <button className="btn" onClick={()=>{this.props.shuffle()}}>SHUFFLE</button>
 
-            <div className="notice">Game is complete: { boardComplete ? "Yes" : "No"} </div>
         </div>
     )
   }

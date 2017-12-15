@@ -79,6 +79,15 @@ export class App extends Component {
             boardComplete: complete
         })
       }
+
+      reset = () => {
+          this.setState({
+            items: this.generateItems(),
+            emptyIndex: 15,
+            validPositions: validMoves(15) 
+        })
+      }
+      
       
     render() {
         const { items, emptyIndex, validPositions, boardComplete } = this.state
@@ -93,6 +102,13 @@ export class App extends Component {
                 >
                     { items }
                 </Board>
+
+                <div className="panel">
+                <a className="btn" onClick={()=>{this.shuffleBoard()}}><span>Shuffle</span></a>
+                <a className="btn" onClick={()=>{this.reset()}}><span>Reset</span></a>
+                <a className="btn" disabled><span>{ boardComplete ? "WIN" : "LOSING"}</span></a>
+
+                </div>
             </div>
         )
     }
