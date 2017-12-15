@@ -83,6 +83,27 @@ Valid positions at each position is hardcoded. It's still modular though as it c
 
 ----
 
+
+State has these main properties
+```js
+    this.state = {
+        items: [],
+        validPositions: [],
+        emptyIndex: 15,
+        boardComplete: false
+    };
+```
+
+Empty index is always used to keep tracking of number 15 in the dom. Empty index could be 5 if it is the fifth child in the dom. It starts off last.
+
+You can use this class to make it keep the space.
+
+```css
+        &.board__item--empty {
+            visibility: hidden;
+        }
+```
+
 The trickiest part is finding correct positions of items. Getting Item[4] for item 4 is wrong as that node could be:
 
       <div id="2" class="board__item board__item--valid">
