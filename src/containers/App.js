@@ -72,10 +72,13 @@ export class App extends Component {
         newEmptyIndex = _.findIndex(newItems, item => item.key == 15);
         const newvalidPositions = validMoves(newEmptyIndex)
 
+        const complete = checkGameStatus(newItems)
+
         this.setState({
             items: newItems,
             emptyIndex: newEmptyIndex,
-            validPositions: newvalidPositions
+            validPositions: newvalidPositions,
+            boardComplete: complete
         })
       }
       
