@@ -1,22 +1,27 @@
-/*
-Application Settings Go Here
-------------------------------------
-This file acts as a bundler for all variables/mixins/themes, so they
-can easily be swapped out without `core.scss` ever having to know.
 
-For example:
+@import 'item';
 
-@import './variables/colors';
-@import './variables/components';
-@import './themes/default';
-*/
-
-.c-kanban {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    .c-kanban__header {
-        padding: 1.4em;
-    }
-}
+// Some best-practice CSS that's useful for most apps
+// Just remove them if they're not what you want
+html {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  #root {
+    width: 80%;
+    margin: auto;
+  }
+  
