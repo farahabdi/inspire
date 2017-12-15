@@ -5,10 +5,7 @@ const shuffle = list => {
     return list.map((a) => [Math.random(),a]).sort((a,b) => a[0]-b[0]).map((a) => a[1]);
 }
 
-const generateRandom = () => {
-    return Math.floor(Math.random() * 16); 
-  }
- 
+
 const checkGameStatus = list => {
     for (let index = 0; index < list.length; index++) { 
         if (list[index].key !== index.toString()) {

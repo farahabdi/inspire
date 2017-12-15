@@ -68,8 +68,7 @@ export class App extends Component {
       shuffleBoard = () => {
         const { items, emptyIndex } = this.state
         const newItems = shuffle(items)
-        let newEmptyIndex = generateRandom()
-        newEmptyIndex = _.findIndex(newItems, item => item.key == 15);
+        const newEmptyIndex = _.findIndex(newItems, item => item.key == 15);
         const newvalidPositions = validMoves(newEmptyIndex)
 
         const complete = checkGameStatus(newItems)
