@@ -75,11 +75,11 @@ Four elements are kept per row due to this CSS:
 ```
 ---
 
-Board is deemed complete if you can traverse the list consecutively to 14. (check util function)
+Board is deemed complete if you can traverse the list consecutively to 14. (check [util](https://github.com/farahabdi/isobar/blob/ad6ce40567d460ef30a3f72f10a6f2e78946053e/src/containers/utils.js#L9) function)
 
 ----
 
-Valid positions at each position is hardcoded. It's still modular though as it could be swapped out later.
+Valid positions at each position in board is [hardcoded](https://github.com/farahabdi/isobar/blob/ad6ce40567d460ef30a3f72f10a6f2e78946053e/src/containers/utils.js#L20). It's still modular though as it could be swapped out later.
 
 ----
 
@@ -110,4 +110,4 @@ The trickiest part is finding correct positions of items. Getting Item[4] for it
          <div class="board__text">2</div>
       </div>
 
- You need a nested search to find correct key in dom (using ∂</dl>lodash findIndex).
+ You need a nested search to find correct key in dom (using lodash [._findIndex](https://lodash.com/docs/4.17.4#findIndex)).
