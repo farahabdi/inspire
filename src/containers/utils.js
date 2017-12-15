@@ -34,6 +34,5 @@ const validMoves = (emptyIndex) => rules[emptyIndex.toString()][emptyIndex.toStr
 export {
     validMoves,
     shuffle,
-    generateRandom,
     checkGameStatus
 }
