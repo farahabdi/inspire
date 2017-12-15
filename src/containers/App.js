@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Items from './Items'
-import Board from './Board'
+import Items from '../components/Items'
+import Board from '../components/Board'
 import { validMoves, generateRandom, shuffle, checkGameStatus } from './utils'
 import _ from 'lodash'
 
