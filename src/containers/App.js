@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Items from '../components/Items'
+import Item from '../components/Item'
 import Board from '../components/Board'
 import { validMoves, generateRandom, shuffle, checkGameStatus } from './utils'
 import _ from 'lodash'
@@ -57,7 +57,6 @@ export class App extends Component {
         return listItems
       }
       
-    
       componentWillMount = () => {
         const items = this.generateItems()
         const validPositions = validMoves(this.state.emptyIndex)

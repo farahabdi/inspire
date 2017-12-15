@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Items from './Items'
+import Item from './Item'
 
 export class Board extends Component {
 
