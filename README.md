@@ -8,7 +8,7 @@ yarn run start
 // basic idea
 
 Our App dom looks like
-
+```html
 <div class="container">
    <div class="board">
       <div id="4" class="board__item">
@@ -61,18 +61,18 @@ Our App dom looks like
       </div>
    </div>
 </div>
-
-
+</dl>
+```
 
 Four elements are kept per row due to this CSS:
-
+```css
 .board__item {
     /* */
       flex-grow: 1;
       width: calc(100% * (1/4) - 10px - 1px);
       /* */
 }
-
+```
 ---
 
 Board is deemed complete if you can traverse the list consecutively to 14. (check util function)
@@ -89,4 +89,4 @@ The trickiest part is finding correct positions of items. Getting Item[4] for it
          <div class="board__text">2</div>
       </div>
 
- You need a nested search to find correct key in dom (using ∂lodash findIndex).
+ You need a nested search to find correct key in dom (using ∂</dl>lodash findIndex).
