@@ -9,8 +9,7 @@ Open http://localhost:3001/ in browser
 
 Demo
 ----
-![alt text](https://imgur.com/a/pBbFb)
-
+https://imgur.com/a/pBbFb
 ----
 // basic idea
 
