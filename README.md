@@ -1,10 +1,13 @@
 Run app by running
 
+----
 yarn install
 
 yarn run start
 
+Open http://localhost:3001/ in browser
 
+----
 // basic idea
 
 Our App dom looks like
