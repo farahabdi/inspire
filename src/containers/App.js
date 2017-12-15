@@ -53,26 +53,25 @@ export class App extends Component {
 
       handleItemClick = (e) => {
         const { items, emptyIndex, validPositions } = this.state
-        let number = parseInt(e.target.id)
+        let itemIndex = parseInt(e.target.id)
         // Find the actual key in the dom array as they may not be in order
-        number= _.findIndex(items, item => item.key == number);
+        itemIndex= _.findIndex(items, item => item.key == itemIndex);
         // If item clicked is not a valid move just return
-        if (validPositions.indexOf(number) === -1) {
+        if (validPositions.indexOf(itemIndex) === -1) {
             return
         }
         // The item clicked will be the new emptyItem, and generate validPositions from that
-        const newEmptyIndex = number
-        const newValidPositions = validMoves(newEmptyIndex)
+        const newValidPositions = validMoves(itemIndex)
 
         // Swap the item that was clicked, with the empty item
-        const newItems = this.swapItems(items, number, emptyIndex)
-        const complete = checkGameStatus(newItems)
+        const newItems = this.swapItems(items, itemIndex, emptyIndex)
+
 
         this.setState({
-            emptyIndex: newEmptyIndex,
+            emptyIndex: itemIndex,
             validPositions: newValidPositions,
             items: newItems,
-            boardComplete: complete
+            boardComplete: checkGameStatus(newItems)
         })
       }
 
