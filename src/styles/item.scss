@@ -9,7 +9,7 @@
         display: inline-block;
         flex-grow: 1;
         font-family: 'Special Elite', cursive; 
-        background:blue;
+        background-color: rgb(232, 232, 232);
         margin:10px 0 0 10px;
         height:100px;
         font-size: 20px;    
@@ -20,7 +20,11 @@
         }
 
         &.board__item--valid {
-            background: green;
+            background: #A5D6A7;
+
+            &:hover {
+                background: #66BB6A
+            }
         }
     }
 }
