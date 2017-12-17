@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Item from '../components/Item'
 import Board from '../components/Board'
-import { validMoves, generateRandom, shuffle, checkGameStatus } from './utils'
+import { validMoves, generateRandom, shuffle, checkGameStatus } from '../utils'
 import _ from 'lodash'
 
 export class App extends Component {
@@ -108,8 +108,8 @@ export class App extends Component {
                 </Board>
 
                 <div className="panel">
-                    <a className="btn" onClick={()=>{this.shuffleBoard()}}><span>Shuffle</span></a>
-                    <a className="btn" onClick={()=>{this.reset()}}><span>Reset</span></a>
+                    <a className="btn" onClick={this.shuffleBoard}><span>Shuffle</span></a>
+                    <a className="btn" onClick={this.reset}><span>Reset</span></a>
                     <a className="btn" disabled><span>{ boardComplete ? "WIN" : "LOSING"}</span></a>
                 </div>
             </div>
