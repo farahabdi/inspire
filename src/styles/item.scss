@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);    
     margin: 0.8em;
-    
+
     > .board__item {
         position: relative;
         display: inline-block;
@@ -21,7 +21,8 @@
             background: #A5D6A7;
 
             &:hover {
-                background: #66BB6A
+                background: #66BB6A;
+                cursor: pointer;
             }
         }
     }
