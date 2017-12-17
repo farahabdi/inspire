@@ -22,9 +22,9 @@ html {
   }
   
   #root {
-    height: 100%;
-    display: flex;
-    margin: auto;
+    display: grid;
     justify-content: center;
+    height: 100%;
+    align-content: space-evenly;
   }
   
