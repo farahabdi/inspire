@@ -55,7 +55,7 @@ export class App extends Component {
     const { items } = this.state
     const shuffledItems = shuffle(items)
     // Go through the dom nodes in array and locate the index where node with property key=item-15 (empty) is found.
-    const emptyIndex = _.findIndex(shuffledItems, item => item.key === INITIAL_EMPTY_INDEX)
+    const emptyIndex = _.findIndex(shuffledItems, item => item.key === `${INITIAL_EMPTY_INDEX}`)
 
     this.setState({
       items: shuffledItems,

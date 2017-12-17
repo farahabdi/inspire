@@ -18,7 +18,7 @@ const shuffle = list => {
  */
 
 const gameStatus = list => {
-  for (let index = 0; index < list.length; index++) { 
+  for (let index = 0; index < list.length; index++) {
     if (list[index].key !== index.toString()) {
       return false
     }
