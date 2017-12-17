@@ -16,7 +16,7 @@ export class App extends Component {
       items: [],
       validPositions: [],
       emptyIndex: INITIAL_EMPTY_INDEX,
-      boardStatus: !COMPLETE
+      boardStatus: COMPLETE
     }
   }
 
