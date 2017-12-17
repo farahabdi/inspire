@@ -86,7 +86,7 @@ Board is complete if you can traverse key values in list consecutively to 14. (c
 
 ----
 
-Valid positions at each position in board is [hardcoded] using a lookup table.(https://github.com/farahabdi/isobar/blob/master/src/utils/rules.js).
+Valid positions at each position in board is [hardcoded] using a lookup table. They are the green items in the board.(https://github.com/farahabdi/isobar/blob/master/src/utils/rules.js).
 ----
 
 
