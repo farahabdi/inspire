@@ -9,20 +9,18 @@ export class Board extends Component {
     let items = React.Children.map(this.props.children, (child, index) => {
         if (index === emptyIndex)
           return React.cloneElement(child, { isEmpty: true })
-
         else if (validPositions.indexOf(index) != -1) {
            return React.cloneElement(child, { isValid: true })
         }
         else
           return child
       })
+
     return (
         <div className="board">
             { items }
-
         </div>
     )
   }
 }
-
 export default Board

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Item from '../components/Item'
 import Board from '../components/Board'
 import Panel from '../components/Panel'
-import { validMoves, generateRandom, shuffle, checkGameStatus } from '../utils'
+import { validMoves, shuffle, gameStatus, swap } from '../utils'
 import _ from 'lodash'
 
 export class App extends Component {
@@ -14,18 +14,26 @@ export class App extends Component {
             emptyIndex: 15,
             boardStatus: false
         };
-      }
+    }
 
-      componentWillMount = () => {
-        this.setState({ 
+    /**
+     * Load initial config before mounting app
+    */
+
+    componentWillMount = () => {
+        this.setState({
             items: this.generateItems(),
             boardStatus: true,
             validPositions: validMoves(this.state.emptyIndex)
         })
-      }
+    }
 
-      generateItems = () => {
-        const numbers = Array.from({length: 16}, (v, i) => i)
+    /**
+     * Generate initial board on win state
+    */
+
+    generateItems = () => {
+        const numbers = Array.from({ length: 16 }, (v, i) => i)
         const listItems = numbers.map(number =>
             <Item
                 key={number.toString()}
@@ -34,69 +42,70 @@ export class App extends Component {
             />
         );
         return listItems
-      }
-      
-      shuffleBoard = () => {
-        const { items } = this.state
-        const newItems = shuffle(items)
+    }
 
-        // Go through the dom nodes and check the keys of each for where number 15 is located
-        // inside the array.
-        const emptyIndex = _.findIndex(newItems, item => item.key == 15);
+    /**
+     * Shuffle board
+    */
+
+    shuffleBoard = () => {
+        const { items } = this.state
+        const shuffledItems = shuffle(items)
+
+        // Go through the dom nodes in array and locate the index where node with property key=item-15 (empty) is found.
+        const emptyIndex = _.findIndex(shuffledItems, item => item.key == 15);
 
         this.setState({
-            items: newItems,
+            items: shuffledItems,
             emptyIndex: emptyIndex,
             validPositions: validMoves(emptyIndex),
             boardStatus: false
         })
-      }
+    }
 
-      handleItemClick = (e) => {
+
+   /**
+     * Handle change event when clicking an item
+     * @param {SytheticEvent} e
+    */
+
+    handleItemClick = (e) => {
         const { items, emptyIndex, validPositions } = this.state
-        let itemIndex = parseInt(e.target.id)
         // Find the actual key in the dom array as they may not be in order
-        itemIndex= _.findIndex(items, item => item.key == itemIndex);
+        const itemIndex = _.findIndex(items, item => item.key == parseInt(e.target.id));
         // If item clicked is not a valid move just return
         if (validPositions.indexOf(itemIndex) === -1) {
             return
         }
-        // The item clicked will be the new emptyItem, and generate validPositions from that
-        const newValidPositions = validMoves(itemIndex)
-
         // Swap the item that was clicked, with the empty item
-        const newItems = this.swapItems(items, itemIndex, emptyIndex)
+        const newItems = swap(items, itemIndex, emptyIndex)
 
 
         this.setState({
             emptyIndex: itemIndex,
-            validPositions: newValidPositions,
+            validPositions: validMoves(itemIndex),
             items: newItems,
             boardStatus: checkGameStatus(newItems)
         })
-      }
+    }
 
-      swapItems = (items, number, emptyIndex) => {
-        const b = items[number];
-        items[number] = items[emptyIndex];
-        items[emptyIndex] = b
-        return items
-      }
-    
+    /**
+     * Reset board to initial settings
+    */
 
-      reset = () => {
-          this.setState({
+    reset = () => {
+        this.setState({
             items: this.generateItems(),
             emptyIndex: 15,
-            validPositions: validMoves(15) ,
+            validPositions: validMoves(15),
             boardStatus: true
         })
-      }
-      
-      
+    }
+
+
     render() {
-        const { items, emptyIndex, validPositions, boardStatus} = this.state
-      
+        const { items, emptyIndex, validPositions, boardStatus } = this.state
+
         return (
             <div className="container">
                 <Board
@@ -104,7 +113,7 @@ export class App extends Component {
                     validPositions={validPositions}
                     boardStatus={boardStatus}
                 >
-                    { items }
+                    {items}
                 </Board>
 
                 <Panel

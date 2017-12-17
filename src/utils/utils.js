@@ -1,11 +1,23 @@
 import rules from './rules'
 
-// Source: http://www.robweir.com/blog/2010/02/microsoft-random-browser-ballot.html
+/**
+ * Takes array of list of nodes and shuffles them properly
+ * Source: http://www.robweir.com/blog/2010/02/microsoft-random-browser-ballot.html
+ * @param {Object} items
+ * @returns {Object} items
+ */
+
 const shuffle = list => {
     return list.map((a) => [Math.random(),a]).sort((a,b) => a[0]-b[0]).map((a) => a[1]);
 }
 
-const checkGameStatus = list => {
+/**
+ * Takes list of all nodes and checks to see if game is complete.
+ * @param {Object} list
+ * @returns {Boolean}
+ */
+
+const gameStatus = items => {
     for (let index = 0; index < list.length; index++) { 
         if (list[index].key !== index.toString()) {
             return false
@@ -14,10 +26,34 @@ const checkGameStatus = list => {
     return true
 }
 
+/**
+ * Takes index of clicked item and empty Index and swaps them
+ * 
+ * @param {Object} items
+ * @param {number} currentIndex
+ * @param {number} emptyIndex
+ * @returns {Object} items
+ */
+
+const swap = (items, currentIndex, emptyIndex) => {
+    const temp = items[currentIndex];
+    items[currentIndex] = items[emptyIndex];
+    items[emptyIndex] = temp
+    return items
+  }
+
+
+/**
+ * Takes index of current empty item and returns list of valid positions
+ * @param {number} emptyIndex
+ * @returns {Array}
+ */
+
 const validMoves = (emptyIndex) => rules[emptyIndex.toString()][emptyIndex.toString()]
 
 export {
     validMoves,
     shuffle,
-    checkGameStatus
+    gameStatus,
+    swap
 }
