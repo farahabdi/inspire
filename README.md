@@ -13,7 +13,7 @@ https://imgur.com/a/pBbFb
 ----
 // basic idea
 
-Our App dom looks like
+App dom looks like after shuffle
 ```html
 <div class="container">
    <div class="board">
@@ -70,23 +70,23 @@ Our App dom looks like
 </dl>
 ```
 
-Four elements are kept per row due to this CSS:
+CSS Grid layout used to keep board like layout. Css here
 ```css
 .board__item {
     /* */
-      flex-grow: 1;
-      width: calc(100% * (1/4) - 10px - 1px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);    
+    margin: 0.8em;
       /* */
 }
 ```
 ---
 
-Board is deemed complete if you can traverse the list consecutively to 14. (check [util](https://github.com/farahabdi/isobar/blob/ad6ce40567d460ef30a3f72f10a6f2e78946053e/src/containers/utils.js#L9) function)
+Board is complete if you can traverse key values in list consecutively to 14. (check [util](https://github.com/farahabdi/isobar/blob/97647c18b7a906c740c198b7d7073034eabcdb1a/src/utils/utils.js#L20) function)
 
 ----
 
-Valid positions at each position in board is [hardcoded](https://github.com/farahabdi/isobar/blob/ad6ce40567d460ef30a3f72f10a6f2e78946053e/src/containers/utils.js#L20). It's still modular though as it could be swapped out later.
-
+Valid positions at each position in board is [hardcoded] using a lookup table.(https://github.com/farahabdi/isobar/blob/master/src/utils/rules.js).
 ----
 
 
@@ -100,8 +100,6 @@ State has these main properties
     };
 ```
 
-Empty index is always used to keep tracking of number 15 in the dom. Empty index could be 5 if it is the fifth child in the dom. It starts off last.
-
 You can use this class to make it keep the space.
 
 ```css
@@ -110,10 +108,7 @@ You can use this class to make it keep the space.
         }
 ```
 
-The trickiest part is finding correct positions of items. Getting Item[4] for item 4 is wrong as that node could be:
 
-      <div id="2" class="board__item board__item--valid">
-         <div class="board__text">2</div>
-      </div>
+Empty index is always used to keep track of node with key value 15. It's not position of node in list array that matters but they key value inside the element. i.e Item[4] could have a key value of 12. 
 
- You need a nested search to find correct key in dom (using lodash [._findIndex](https://lodash.com/docs/4.17.4#findIndex)).
+You need a nested property search to find correct key in dom (using lodash [._findIndex](https://lodash.com/docs/4.17.4#findIndex)).
