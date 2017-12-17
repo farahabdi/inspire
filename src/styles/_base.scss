@@ -1,7 +1,7 @@
 
 @import 'item';
 @import 'panel';
-
+@import 'button';
 // Some best-practice CSS that's useful for most apps
 // Just remove them if they're not what you want
 html {
@@ -28,3 +28,9 @@ html {
     align-content: space-evenly;
   }
   
+ .container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;    
+    grid-gap: 20px;
+    border: 3px solid #bdc3c7;
+}

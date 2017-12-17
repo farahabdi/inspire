@@ -17,7 +17,7 @@ const shuffle = list => {
  * @returns {Boolean}
  */
 
-const gameStatus = items => {
+const gameStatus = list => {
     for (let index = 0; index < list.length; index++) { 
         if (list[index].key !== index.toString()) {
             return false

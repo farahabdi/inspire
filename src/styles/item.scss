@@ -26,21 +26,14 @@
             }
         }
     }
-}
 
-.board__text {
-    position: absolute;  
-    width: 100%;
-    margin: 0;
-    top: 50%;   
-    flex: grow;
-    text-align: center;                 
-    transform: translate(0, -50%);
-}
-
-.container {
-    display: grid;
-    grid-template-columns: 3fr 1fr;    
-    grid-gap: 20px;
-    border: 3px solid #bdc3c7;
+    .board__text {
+        position: absolute;  
+        width: 100%;
+        margin: 0;
+        top: 50%;   
+        flex: grow;
+        text-align: center;                 
+        transform: translate(0, -50%);
+    }
 }

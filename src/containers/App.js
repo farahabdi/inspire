@@ -85,7 +85,7 @@ export class App extends Component {
             emptyIndex: itemIndex,
             validPositions: validMoves(itemIndex),
             items: newItems,
-            boardStatus: checkGameStatus(newItems)
+            boardStatus: gameStatus(newItems)
         })
     }
 
