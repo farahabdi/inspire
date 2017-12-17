@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Item from '../components/Item'
 import Board from '../components/Board'
+import Panel from '../components/Panel'
 import { validMoves, generateRandom, shuffle, checkGameStatus } from '../utils'
 import _ from 'lodash'
 
@@ -11,14 +12,14 @@ export class App extends Component {
             items: [],
             validPositions: [],
             emptyIndex: 15,
-            boardComplete: false
+            boardStatus: false
         };
       }
 
       componentWillMount = () => {
         this.setState({ 
             items: this.generateItems(),
-            boardComplete: true,
+            boardStatus: true,
             validPositions: validMoves(this.state.emptyIndex)
         })
       }
@@ -47,7 +48,7 @@ export class App extends Component {
             items: newItems,
             emptyIndex: emptyIndex,
             validPositions: validMoves(emptyIndex),
-            boardComplete: false
+            boardStatus: false
         })
       }
 
@@ -71,7 +72,7 @@ export class App extends Component {
             emptyIndex: itemIndex,
             validPositions: newValidPositions,
             items: newItems,
-            boardComplete: checkGameStatus(newItems)
+            boardStatus: checkGameStatus(newItems)
         })
       }
 
@@ -88,30 +89,29 @@ export class App extends Component {
             items: this.generateItems(),
             emptyIndex: 15,
             validPositions: validMoves(15) ,
-            boardComplete: true
+            boardStatus: true
         })
       }
       
       
     render() {
-        const { items, emptyIndex, validPositions, boardComplete } = this.state
+        const { items, emptyIndex, validPositions, boardStatus} = this.state
       
         return (
             <div className="container">
                 <Board
-                    shuffle={this.shuffleBoard}
                     emptyIndex={emptyIndex}
                     validPositions={validPositions}
-                    boardComplete={boardComplete}
+                    boardStatus={boardStatus}
                 >
                     { items }
                 </Board>
 
-                <div className="panel">
-                    <a className="btn" onClick={this.shuffleBoard}><span>Shuffle</span></a>
-                    <a className="btn" onClick={this.reset}><span>Reset</span></a>
-                    <a className="btn" disabled><span>{ boardComplete ? "WIN" : "LOSING"}</span></a>
-                </div>
+                <Panel
+                    reset={this.reset}
+                    boardStatus={boardStatus}
+                    shuffle={this.shuffleBoard}
+                />
             </div>
         )
     }
