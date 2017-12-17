@@ -70,7 +70,7 @@ App dom looks like after shuffle
 </dl>
 ```
 
-CSS Grid layout used to keep board like layout. Css here
+CSS Grid layout used to keep board 4 by 4. See [here](https://github.com/farahabdi/isobar/blob/97647c18b7a906c740c198b7d7073034eabcdb1a/src/utils/utils.js#L20)
 ```css
 .board__item {
     /* */
@@ -82,24 +82,6 @@ CSS Grid layout used to keep board like layout. Css here
 ```
 ---
 
-Board is complete if you can traverse key values in list consecutively to 14. (check [util](https://github.com/farahabdi/isobar/blob/97647c18b7a906c740c198b7d7073034eabcdb1a/src/utils/utils.js#L20) function)
-
-----
-
-Valid positions at each position in board is [hardcoded] using a lookup table. They are the green items in the board.(https://github.com/farahabdi/isobar/blob/master/src/utils/rules.js).
-----
-
-
-State has these main properties
-```js
-    this.state = {
-        items: [],
-        validPositions: [],
-        emptyIndex: 15,
-        boardComplete: false
-    };
-```
-
 You can use this class to make it keep the space.
 
 ```css
@@ -107,6 +89,14 @@ You can use this class to make it keep the space.
             visibility: hidden;
         }
 ```
+----
+
+Board is complete if you can traverse key values in list consecutively to 14. (check [util](https://github.com/farahabdi/isobar/blob/97647c18b7a906c740c198b7d7073034eabcdb1a/src/utils/utils.js#L20) function)
+
+----
+
+Valid positions at each position in board is [hardcoded] using a lookup table. They are the green items in the board.(https://github.com/farahabdi/isobar/blob/master/src/utils/rules.js).
+----
 
 
 Empty index is always used to keep track of node with key value 15. It's not position of node in list array that matters but they key value inside the element. i.e Item[4] could have a key value of 12. 

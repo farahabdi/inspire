@@ -3,12 +3,12 @@ import rules from './rules'
 /**
  * Takes array of list of nodes and shuffles them properly
  * Source: http://www.robweir.com/blog/2010/02/microsoft-random-browser-ballot.html
- * @param {Object} items
- * @returns {Object} items
+ * @param {Object} list
+ * @returns {Object}
  */
 
 const shuffle = list => {
-    return list.map((a) => [Math.random(),a]).sort((a,b) => a[0]-b[0]).map((a) => a[1]);
+  return list.map((a) => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map((a) => a[1])
 }
 
 /**
@@ -18,30 +18,28 @@ const shuffle = list => {
  */
 
 const gameStatus = list => {
-    for (let index = 0; index < list.length; index++) { 
-        if (list[index].key !== index.toString()) {
-            return false
-        }
+  for (let index = 0; index < list.length; index++) { 
+    if (list[index].key !== index.toString()) {
+      return false
     }
-    return true
+  }
+  return true
 }
 
 /**
  * Takes index of clicked item and empty Index and swaps them
- * 
- * @param {Object} items
+ * @param {Object} list
  * @param {number} currentIndex
  * @param {number} emptyIndex
  * @returns {Object} items
  */
 
-const swap = (items, currentIndex, emptyIndex) => {
-    const temp = items[currentIndex];
-    items[currentIndex] = items[emptyIndex];
-    items[emptyIndex] = temp
-    return items
-  }
-
+const swap = (list, currentIndex, emptyIndex) => {
+  const temp = list[currentIndex]
+  list[currentIndex] = list[emptyIndex]
+  list[emptyIndex] = temp
+  return list
+}
 
 /**
  * Takes index of current empty item and returns list of valid positions
