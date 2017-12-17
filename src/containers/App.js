@@ -5,14 +5,18 @@ import Panel from '../components/Panel'
 import { validMoves, shuffle, gameStatus, swap } from '../utils'
 import _ from 'lodash'
 
+const COMPLETE = true
+const BOARD_SIZE = 16
+const INITIAL_EMPTY_INDEX = 15
+
 export class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             items: [],
             validPositions: [],
-            emptyIndex: 15,
-            boardStatus: false
+            emptyIndex: INITIAL_EMPTY_INDEX,
+            boardStatus: !COMPLETE
         };
     }
 
@@ -23,7 +27,7 @@ export class App extends Component {
     componentWillMount = () => {
         this.setState({
             items: this.generateItems(),
-            boardStatus: true,
+            boardStatus: COMPLETE,
             validPositions: validMoves(this.state.emptyIndex)
         })
     }
@@ -33,7 +37,7 @@ export class App extends Component {
     */
 
     generateItems = () => {
-        const numbers = Array.from({ length: 16 }, (v, i) => i)
+        const numbers = Array.from({ length: BOARD_SIZE }, (v, i) => i)
         const listItems = numbers.map(number =>
             <Item
                 key={number.toString()}
@@ -53,13 +57,13 @@ export class App extends Component {
         const shuffledItems = shuffle(items)
 
         // Go through the dom nodes in array and locate the index where node with property key=item-15 (empty) is found.
-        const emptyIndex = _.findIndex(shuffledItems, item => item.key == 15);
+        const emptyIndex = _.findIndex(shuffledItems, item => item.key == INITIAL_EMPTY_INDEX);
 
         this.setState({
             items: shuffledItems,
             emptyIndex: emptyIndex,
             validPositions: validMoves(emptyIndex),
-            boardStatus: false
+            boardStatus: !COMPLETE
         })
     }
 
@@ -96,9 +100,9 @@ export class App extends Component {
     reset = () => {
         this.setState({
             items: this.generateItems(),
-            emptyIndex: 15,
-            validPositions: validMoves(15),
-            boardStatus: true
+            emptyIndex: INITIAL_EMPTY_INDEX,
+            validPositions: validMoves(INITIAL_EMPTY_INDEX),
+            boardStatus: COMPLETE
         })
     }
 
