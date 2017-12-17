@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-export class Item extends Component {
-
-  render() {
-    const { number, isEmpty, isValid, onSelect} = this.props
-
-    const classes = classnames(
-        'board__item',
-        {
-          [`board__item--empty`]: isEmpty,
-          [`board__item--valid`]: isValid
-        }
-      );
+const Item = ({ number, isEmpty, isValid, onSelect}) => {
+  const classes = classnames(
+    'board__item',
+    {
+      [`board__item--empty`]: isEmpty,
+      [`board__item--valid`]: isValid
+    }
+  );
     return (
-        <div id={number} onClick={(e) => onSelect(e)} className={classes}>
+      <div id={number} onClick={(e) => onSelect(e)} className={classes}>
             <div className="board__text">
                 { number }
             </div>
         </div>
-    )
+      )
   }
-}
-export default Item
+  
+  export default Item
+  
