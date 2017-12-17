@@ -21,10 +21,10 @@ const Item = ({ number, isEmpty, isValid, onSelect }) => {
 }
 
 Item.propTypes = {
-  number: PropTypes.element.isRequired,
-  isEmpty: PropTypes.element.isRequired,
-  isValid: PropTypes.element.isRequired,
-  onSelect: PropTypes.element.isRequired,
+  number: PropTypes.number,
+  isEmpty:PropTypes.bool,
+  isValid: PropTypes.bool,
+  onSelect: PropTypes.func
 }
 
 export default Item

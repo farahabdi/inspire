@@ -1,6 +1,7 @@
 
 /**
  * @return {Array}
+ * Lookup table for board rules.
  *  Ex. At position "0", only items [1, 4] are valid. Can get valid positions in 0(1).
 /* [ _,  1,   2,  3 ]
 /* [ 4,  5,   6,  7 ]

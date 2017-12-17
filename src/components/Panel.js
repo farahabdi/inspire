@@ -12,8 +12,8 @@ const Panel = ({ shuffle, reset, boardStatus }) => {
 }
 
 Panel.propTypes = {
-  shuffle: PropTypes.element.isRequired,
-  reset: PropTypes.element.isRequired,
-  boardStatus: PropTypes.element.isRequired
+  shuffle: PropTypes.func,
+  reset: PropTypes.func,
+  boardStatus: PropTypes.bool
 }
 export default Panel

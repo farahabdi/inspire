@@ -20,9 +20,9 @@ export class App extends Component {
     }
   }
 
-    /**
-     * Load initial config before mounting app
-    */
+  /**
+  * Load initial config before mounting app
+  */
 
   componentWillMount = () => {
     this.setState({
@@ -31,10 +31,9 @@ export class App extends Component {
       validPositions: validMoves(this.state.emptyIndex)
     })
   }
-
-    /**
-     * Generate initial board on win state
-    */
+  /**
+  * Generate initial board on win state
+  */
 
   generateItems = () => {
     const numbers = Array.from({ length: BOARD_SIZE }, (v, i) => i)
@@ -43,21 +42,20 @@ export class App extends Component {
         key={number.toString()}
         number={number}
         onSelect={this.handleItemClick}
-            />
+      />
         )
     return listItems
   }
 
-    /**
-     * Shuffle board
-    */
+  /**
+  * Shuffle board
+  */
 
   shuffleBoard = () => {
     const { items } = this.state
     const shuffledItems = shuffle(items)
-
     // Go through the dom nodes in array and locate the index where node with property key=item-15 (empty) is found.
-    const emptyIndex = _.findIndex(shuffledItems, item => item.key == INITIAL_EMPTY_INDEX);
+    const emptyIndex = _.findIndex(shuffledItems, item => item.key === INITIAL_EMPTY_INDEX)
 
     this.setState({
       items: shuffledItems,
@@ -67,15 +65,15 @@ export class App extends Component {
     })
   }
 
-   /**
-     * Handle change event when clicking an item
-     * @param {SytheticEvent} e
-    */
+  /**
+  * Handle change event when clicking an item
+  * @param {SytheticEvent} e
+  */
 
   handleItemClick = (e) => {
     const { items, emptyIndex, validPositions } = this.state
     // Find the actual key in the dom array as they may not be in order
-    const itemIndex = _.findIndex(items, item => item.key === parseInt(e.target.id))
+    const itemIndex = _.findIndex(items, item => item.key === e.target.id)
     // If item clicked is not a valid move just return
     if (validPositions.indexOf(itemIndex) === -1) {
       return
@@ -90,9 +88,9 @@ export class App extends Component {
     })
   }
 
-    /**
-     * Reset board to initial settings
-    */
+  /**
+  * Reset board to initial settings
+  */
 
   reset = () => {
     this.setState({
@@ -112,7 +110,7 @@ export class App extends Component {
           emptyIndex={emptyIndex}
           validPositions={validPositions}
           boardStatus={boardStatus}
-                >
+        >
           {items}
         </Board>
 
@@ -120,7 +118,7 @@ export class App extends Component {
           reset={this.reset}
           boardStatus={boardStatus}
           shuffle={this.shuffleBoard}
-                />
+         />
       </div>
     )
   }
