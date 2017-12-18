@@ -13,7 +13,7 @@ export class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      items: [],
+      list: [],
       validPositions: [],
       emptyIndex: INITIAL_EMPTY_INDEX,
       boardStatus: COMPLETE
@@ -26,7 +26,7 @@ export class App extends Component {
 
   componentWillMount = () => {
     this.setState({
-      items: this.generateItems(),
+      list: this.generateList(),
       boardStatus: COMPLETE,
       validPositions: validMoves(this.state.emptyIndex)
     })
@@ -35,16 +35,16 @@ export class App extends Component {
   * Generate initial board on win state
   */
 
-  generateItems = () => {
+  generateList = () => {
     const numbers = Array.from({ length: BOARD_SIZE }, (v, i) => i)
-    const listItems = numbers.map(number =>
+    const newList = numbers.map(number =>
       <Item
         key={number.toString()}
         number={number}
         onSelect={this.handleItemClick}
       />
         )
-    return listItems
+    return newList
   }
 
   /**
@@ -52,13 +52,13 @@ export class App extends Component {
   */
 
   shuffleBoard = () => {
-    const { items } = this.state
-    const shuffledItems = shuffle(items)
+    const { list } = this.state
+    const shuffledList = shuffle(list)
     // Go through the dom nodes in array and locate the index where node with property key=item-15 (empty) is found.
-    const emptyIndex = _.findIndex(shuffledItems, item => item.key === `${INITIAL_EMPTY_INDEX}`)
+    const emptyIndex = _.findIndex(shuffledList, item => item.key === `${INITIAL_EMPTY_INDEX}`)
 
     this.setState({
-      items: shuffledItems,
+      list: shuffledList,
       emptyIndex: emptyIndex,
       validPositions: validMoves(emptyIndex),
       boardStatus: !COMPLETE
@@ -71,20 +71,20 @@ export class App extends Component {
   */
 
   handleItemClick = (e) => {
-    const { items, emptyIndex, validPositions } = this.state
+    const { list, emptyIndex, validPositions } = this.state
     // Find the actual key in the dom array as they may not be in order
-    const itemIndex = _.findIndex(items, item => item.key === e.target.id)
+    const itemIndex = _.findIndex(list, item => item.key === e.target.id)
     // If item clicked is not a valid move just return
     if (validPositions.indexOf(itemIndex) === -1) {
       return
     }
     // Swap the item that was clicked, with the empty item
-    const newItems = swap(items, itemIndex, emptyIndex)
+    const newList = swap(list, itemIndex, emptyIndex)
     this.setState({
       emptyIndex: itemIndex,
       validPositions: validMoves(itemIndex),
-      items: newItems,
-      boardStatus: gameStatus(newItems)
+      list: newList,
+      boardStatus: gameStatus(newList)
     })
   }
 
@@ -94,7 +94,7 @@ export class App extends Component {
 
   reset = () => {
     this.setState({
-      items: this.generateItems(),
+      list: this.generateList(),
       emptyIndex: INITIAL_EMPTY_INDEX,
       validPositions: validMoves(INITIAL_EMPTY_INDEX),
       boardStatus: COMPLETE
@@ -102,7 +102,7 @@ export class App extends Component {
   }
 
   render () {
-    const { items, emptyIndex, validPositions, boardStatus } = this.state
+    const { list, emptyIndex, validPositions, boardStatus } = this.state
 
     return (
       <div className='container'>
@@ -111,7 +111,7 @@ export class App extends Component {
           validPositions={validPositions}
           boardStatus={boardStatus}
         >
-          {items}
+          {list}
         </Board>
 
         <Panel

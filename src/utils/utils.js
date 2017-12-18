@@ -31,7 +31,7 @@ const gameStatus = list => {
  * @param {Object} list
  * @param {number} currentIndex
  * @param {number} emptyIndex
- * @returns {Object} items
+ * @returns {Object} list
  */
 
 const swap = (list, currentIndex, emptyIndex) => {
