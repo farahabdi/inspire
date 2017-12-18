@@ -47,7 +47,7 @@ const swap = (list, currentIndex, emptyIndex) => {
  * @returns {Array}
  */
 
-const validMoves = (emptyIndex) => rules[emptyIndex.toString()][emptyIndex.toString()]
+const validMoves = (emptyIndex) => rules[`${emptyIndex}`][`${emptyIndex}`]
 
 export {
     validMoves,
