@@ -6,8 +6,8 @@ const Item = ({ number, isEmpty, isValid, onSelect }) => {
   const classes = classnames(
     'board__item',
     {
-      [`board__item--empty`]: isEmpty,
-      [`board__item--valid`]: isValid
+      [`board__item--empty`]: isEmpty, // Hide item with 'visibility: hidden' when class active
+      [`board__item--valid`]: isValid  // Show green background when class active
     }
   )
 
