@@ -26,7 +26,7 @@ export class App extends Component {
     this.setState({
       list: this.initialiseList(),
       boardStatus: COMPLETE,
-      validPositions: validMoves(this.state.emptyIndex)
+      validPositions: validMoves(INITIAL_EMPTY_INDEX)
     })
   }
   /**
