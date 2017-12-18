@@ -24,7 +24,7 @@ export class App extends Component {
 
   componentWillMount = () => {
     this.setState({
-      list: this.generateList(),
+      list: this.initialiseList(),
       boardStatus: COMPLETE,
       validPositions: validMoves(this.state.emptyIndex)
     })
@@ -33,11 +33,13 @@ export class App extends Component {
   * Generate initial board on win state
   */
 
-  generateList = () => {
+  initialiseList = () => {
+    // Generate ordered array of 16 elements, 0 indexed (0-15)
     const numbers = Array.from({ length: BOARD_SIZE }, (v, i) => i)
+    // Map over each and return an Item component
     const newList = numbers.map(number =>
       <Item
-        key={number.toString()}
+        key={`${number}`}
         number={number}
         onSelect={this.handleItemClick}
       />
@@ -92,7 +94,7 @@ export class App extends Component {
 
   reset = () => {
     this.setState({
-      list: this.generateList(),
+      list: this.initialiseList(),
       emptyIndex: INITIAL_EMPTY_INDEX,
       validPositions: validMoves(INITIAL_EMPTY_INDEX),
       boardStatus: COMPLETE
