@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import Item from '../components/Item'
-import Board from '../components/Board'
-import Panel from '../components/Panel'
+import { Item, Board, Panel } from '../components'
 import { validMoves, shuffle, gameStatus, swap } from '../utils'
-import _ from 'lodash'
+import findIndex from 'lodash/findIndex'
 
 const COMPLETE = true
 const BOARD_SIZE = 16
@@ -55,7 +53,7 @@ export class App extends Component {
     const { list } = this.state
     const shuffledList = shuffle(list)
     // Go through the dom nodes in array and locate the index where node with property key=item-15 (empty) is found.
-    const emptyIndex = _.findIndex(shuffledList, item => item.key === `${INITIAL_EMPTY_INDEX}`)
+    const emptyIndex = findIndex(shuffledList, item => item.key === `${INITIAL_EMPTY_INDEX}`)
 
     this.setState({
       list: shuffledList,
@@ -73,7 +71,7 @@ export class App extends Component {
   handleItemClick = (e) => {
     const { list, emptyIndex, validPositions } = this.state
     // Find the actual key in the dom array as they may not be in order
-    const itemIndex = _.findIndex(list, item => item.key === e.target.id)
+    const itemIndex = findIndex(list, item => item.key === e.target.id)
     // If item clicked is not a valid move just return
     if (validPositions.indexOf(itemIndex) === -1) {
       return
