@@ -13,9 +13,6 @@ const __PROD__ = project.env === 'production'
 
 const config = {
   entry: {
-    normalize: [
-      inProjectSrc('normalize'),
-    ],
     main: [
       inProjectSrc(project.main),
     ],
