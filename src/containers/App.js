@@ -5,7 +5,6 @@ import findIndex from 'lodash/findIndex'
 
 const COMPLETE = true
 const BOARD_SIZE = 16
-const INITIAL_EMPTY_INDEX = 15
 
 export class App extends Component {
   constructor (props) {
@@ -13,7 +12,7 @@ export class App extends Component {
     this.state = {
       list: [],
       validPositions: [],
-      emptyIndex: INITIAL_EMPTY_INDEX,
+      emptyIndex: BOARD_SIZE - 1,
       boardStatus: COMPLETE
     }
   }
@@ -26,7 +25,7 @@ export class App extends Component {
     this.setState({
       list: this.initialiseList(),
       boardStatus: COMPLETE,
-      validPositions: validMoves(INITIAL_EMPTY_INDEX)
+      validPositions: validMoves(BOARD_SIZE - 1)
     })
   }
   /**
@@ -55,7 +54,7 @@ export class App extends Component {
     const { list } = this.state
     const shuffledList = shuffle(list)
     // Go through the dom nodes in array and locate the index where node with property key=item-15 (empty) is found.
-    const emptyIndex = findIndex(shuffledList, item => item.key === `${INITIAL_EMPTY_INDEX}`)
+    const emptyIndex = findIndex(shuffledList, item => item.key === `${BOARD_SIZE - 1}`)
 
     this.setState({
       list: shuffledList,
@@ -95,8 +94,8 @@ export class App extends Component {
   reset = () => {
     this.setState({
       list: this.initialiseList(),
-      emptyIndex: INITIAL_EMPTY_INDEX,
-      validPositions: validMoves(INITIAL_EMPTY_INDEX),
+      emptyIndex: BOARD_SIZE - 1,
+      validPositions: validMoves(BOARD_SIZE - 1),
       boardStatus: COMPLETE
     })
   }
