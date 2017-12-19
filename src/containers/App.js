@@ -33,17 +33,15 @@ export class App extends Component {
   */
 
   initialiseList = () => {
-    // Generate ordered array of 16 elements, 0 indexed (0-15)
-    const numbers = Array.from({ length: BOARD_SIZE }, (v, i) => i)
-    // Map over each and return an Item component
-    const newList = numbers.map(number =>
-      <Item
-        key={`${number}`}
-        number={number}
-        onSelect={this.handleItemClick}
-      />
-        )
-    return newList
+    let list = []
+    for (let index = 0; index < BOARD_SIZE; index++) {
+      list.push(<Item
+        key={`${index}`}
+        number={index}
+        onSelect={this.handleItemClick} />
+      )
+    }
+    return list
   }
 
   /**
