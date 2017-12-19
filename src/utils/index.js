@@ -1,9 +1,7 @@
-import rules from './rules'
-
 import {
-  validMoves,
+  rules,
   shuffle,
   gameStatus,
   swap } from './utils'
 
-export { rules, validMoves, shuffle, gameStatus, swap }
+export { rules, shuffle, gameStatus, swap }
