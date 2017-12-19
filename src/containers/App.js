@@ -10,19 +10,11 @@ export class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      list: [],
+      list: this.initialiseList(),
       validPositions: rules.get(`${BOARD_SIZE - 1}`),
       emptyIndex: BOARD_SIZE - 1,
       boardStatus: COMPLETE
     }
-  }
-
-  /**
-  * Load initial config before mounting app
-  */
-
-  componentWillMount = () => {
-    this.setState({ list: this.initialiseList() })
   }
 
   /**
