@@ -7,14 +7,23 @@ const COMPLETE = true
 const BOARD_SIZE = 16
 
 export class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
+
+  state = {
+    list: [],
+    validPositions: [],
+    emptyIndex: BOARD_SIZE - 1,
+    boardStatus: COMPLETE
+  }
+
+  /**
+  * Load initial config before mounting app
+  */
+
+  componentWillMount = () => {
+    this.setState({
       list: this.initialiseList(),
-      validPositions: rules.get(`${BOARD_SIZE - 1}`),
-      emptyIndex: BOARD_SIZE - 1,
-      boardStatus: COMPLETE
-    }
+      validPositions: rules.get(`${BOARD_SIZE - 1}`)
+    })
   }
 
   /**
