@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Item, Board, Panel } from '../components'
-import { validMoves, shuffle, gameStatus, swap } from '../utils'
+import { shuffle, gameStatus, swap, rules } from '../utils'
 import findIndex from 'lodash/findIndex'
 
 const COMPLETE = true
@@ -11,7 +11,7 @@ export class App extends Component {
     super(props)
     this.state = {
       list: [],
-      validPositions: [],
+      validPositions: rules.get(`${BOARD_SIZE - 1}`),
       emptyIndex: BOARD_SIZE - 1,
       boardStatus: COMPLETE
     }
@@ -22,12 +22,9 @@ export class App extends Component {
   */
 
   componentWillMount = () => {
-    this.setState({
-      list: this.initialiseList(),
-      boardStatus: COMPLETE,
-      validPositions: validMoves(BOARD_SIZE - 1)
-    })
+    this.setState({ list: this.initialiseList() })
   }
+
   /**
   * Generate initial board on win state
   */
@@ -57,7 +54,7 @@ export class App extends Component {
     this.setState({
       list: shuffledList,
       emptyIndex: emptyIndex,
-      validPositions: validMoves(emptyIndex),
+      validPositions: rules.get(`${emptyIndex}`),
       boardStatus: !COMPLETE
     })
   }
@@ -79,7 +76,7 @@ export class App extends Component {
     const newList = swap(list, itemIndex, emptyIndex)
     this.setState({
       emptyIndex: itemIndex,
-      validPositions: validMoves(itemIndex),
+      validPositions: rules.get(`${itemIndex}`),
       list: newList,
       boardStatus: gameStatus(newList)
     })
@@ -93,7 +90,7 @@ export class App extends Component {
     this.setState({
       list: this.initialiseList(),
       emptyIndex: BOARD_SIZE - 1,
-      validPositions: validMoves(BOARD_SIZE - 1),
+      validPositions: rules.get(`${BOARD_SIZE - 1}`),
       boardStatus: COMPLETE
     })
   }

@@ -41,16 +41,7 @@ const swap = (list, currentIndex, emptyIndex) => {
   return list
 }
 
-/**
- * Takes index of current empty item and returns list of valid positions
- * @param {number} emptyIndex
- * @returns {Array}
- */
-
-const validMoves = (emptyIndex) => rules[`${emptyIndex}`][`${emptyIndex}`]
-
 export {
-    validMoves,
     shuffle,
     gameStatus,
     swap
