@@ -14,7 +14,7 @@ const Item = ({ number, isEmpty, isValid, onSelect }) => {
   return (
     <div id={number} onClick={onSelect} className={classes}>
       <div className='board__text'>
-        { number }
+        { number + 1 }
       </div>
     </div>
   )
